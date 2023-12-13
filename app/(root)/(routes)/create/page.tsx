@@ -46,7 +46,7 @@ const ReservationPage = () => {
     time: "",
   });
   const [startDate, setStartDate] = useState<Date | null>(new Date());
-
+  // eslint-disable-next-line react/display-name
   useEffect(() => {
     handleDate();
     // checkingReservation(reservationData.date);
@@ -214,6 +214,9 @@ const ReservationPage = () => {
                 locale={"ja"}
                 dateFormatCalendar="yyyy年 MM月"
                 popperPlacement="top"
+                customInput={
+                  <button type="button">{reservationData.date}</button>
+                }
               />
             </div>
             <div>
