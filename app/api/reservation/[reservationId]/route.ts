@@ -3,7 +3,7 @@ import prisma from "@/libs/prismadb";
 import bcrypt from "bcrypt";
 
 interface Params {
-  reservationId?: number;
+  reservationId?: string;
 }
 
 export const DELETE = async (
@@ -18,7 +18,7 @@ export const DELETE = async (
   try {
     const reservations = await prisma.reservation.findUnique({
       where: {
-        id: Number(reservationId),
+        id: reservationId,
       },
     });
 
@@ -27,7 +27,7 @@ export const DELETE = async (
     if (body === "kasinokiadmin") {
       await prisma.reservation.delete({
         where: {
-          id: Number(reservationId),
+          id: reservationId,
         },
       });
 
@@ -43,7 +43,7 @@ export const DELETE = async (
 
       await prisma.reservation.delete({
         where: {
-          id: Number(reservationId),
+          id: reservationId,
         },
       });
 
