@@ -213,7 +213,7 @@ const ReservationPage = () => {
                 maxDate={addDays(new Date(), 21)}
                 locale={"ja"}
                 dateFormatCalendar="yyyy年 MM月"
-                withPortal
+                popperPlacement="top"
               />
             </div>
             <div>
