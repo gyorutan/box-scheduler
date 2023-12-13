@@ -6,14 +6,15 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Reservation {
-  id       Int     @id @default(autoincrement())
-  writer   String?
-  password String
-  date     String?
-  time     String?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  password  String
+  date      String
+  time      String
+  createdAt DateTime @default(now())
 }

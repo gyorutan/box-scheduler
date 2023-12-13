@@ -19,7 +19,7 @@ export const POST = async (request: Request) => {
 
   const createdReservation = await prisma.reservation.create({
     data: {
-      writer: body.writer,
+      name: body.writer,
       password: hashedPassword,
       date: body.date,
       time: body.time,

@@ -7,7 +7,7 @@ import Image from "next/image";
 
 interface Reservations {
   id: string;
-  writer: string;
+  name: string;
   date: string;
   time: string;
 }
@@ -104,7 +104,7 @@ const HomePage = () => {
                     >
                       <div className="font-bold">{reservation.time}</div>
                       <div className="font-black text-blue-500 pr-16 text-base">
-                        {reservation.writer}
+                        {reservation.name}
                       </div>
                       <button
                         className="hover:bg-red-200 p-2 rounded-full"
