@@ -35,19 +35,30 @@ export const TimeSelect = ({
   >;
   setStep: React.Dispatch<React.SetStateAction<Step>>;
 }) => {
+  if (
+    availableWeekDayTimes.length === 0 ||
+    availableWeekEndTimes.length === 0
+  ) {
+    return (
+      <p className="h-screen flex justify-center items-center text-2xl font-bold">
+        読み込み中・・・
+      </p>
+    );
+  }
+
   return (
     <div className="flex flex-col justify-center items-center gap-y-6">
       <div className="mt-2 flex flex-row gap-x-4 border border-blue-500 py-2 px-5">
-        <p className="font-semibold text-sm text-blue-500">{reservationData.date}</p>
+        <p className="font-semibold text-sm text-blue-500">
+          {reservationData.date}
+        </p>
         <p
           className={cn(
             "font-semibold text-sm text-blue-500",
             !reservationData.time && "text-slate-500"
           )}
         >
-          {reservationData.time
-            ? reservationData.time
-            : "時間選択"}
+          {reservationData.time ? reservationData.time : "時間選択"}
         </p>
       </div>
       <Button

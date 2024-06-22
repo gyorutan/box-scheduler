@@ -17,7 +17,9 @@ export const BottomSheet = ({ mutate }: { mutate: () => void }) => {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <div className="w-full p-4 border-b border-slate-300">
-          <Button className="w-full p-4" variant={"blue"}>予約作成</Button>
+          <Button className="w-full p-4" variant={"blue"}>
+            予約作成
+          </Button>
         </div>
       </SheetTrigger>
       <SheetContent

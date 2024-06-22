@@ -8,11 +8,13 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
 export const InfoForm = ({
+  isLoading,
   reservationData,
   setReservationData,
   handleSubmit,
   setStep,
 }: {
+  isLoading: boolean;
   reservationData: {
     date: string;
     time: string;
@@ -94,11 +96,13 @@ export const InfoForm = ({
       <div className="border-b border-slate-300 w-full"></div>
 
       <Button
-        disabled={!reservationData.bandName || !reservationData.password}
+        disabled={
+          !reservationData.bandName || !reservationData.password || isLoading
+        }
         onClick={handleSubmit}
         className="w-full"
       >
-        予約
+        {isLoading ? "予約中・・・" : "予約"}
       </Button>
     </div>
   );

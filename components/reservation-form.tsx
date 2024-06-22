@@ -7,6 +7,7 @@ import { TimeSelect } from "./time-select";
 import { dateFormatting } from "@/helper/date-formattong";
 import { checkReservation, createReservation } from "@/services";
 import { InfoForm } from "./info-form";
+import toast from "react-hot-toast";
 
 export const ReservationForm = ({
   mutate,
@@ -15,6 +16,7 @@ export const ReservationForm = ({
   mutate: () => void;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState<Step>("date");
   const [date, setDate] = useState<Date>();
   const [reservationData, setReservationData] = useState({
@@ -55,18 +57,22 @@ export const ReservationForm = ({
 
   const handleSubmit = async () => {
     try {
+      setIsLoading(true);
+
       const response = await createReservation(reservationData);
 
       if (response) {
         mutate();
-        alert("予約を登録しました");
+        toast.success("予約を登録しました");
         setIsOpen(false);
       } else {
-        alert("SERVER ERROR");
+        toast.error("SERVER ERROR 管理者にお問い合わせください");
       }
     } catch (error) {
       console.log(error);
-      alert("SERVER ERROR");
+      toast.error("SERVER ERROR 管理者にお問い合わせください");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -94,6 +100,7 @@ export const ReservationForm = ({
       )}
       {step === "info" && (
         <InfoForm
+          isLoading={isLoading}
           reservationData={reservationData}
           setReservationData={setReservationData}
           handleSubmit={handleSubmit}
