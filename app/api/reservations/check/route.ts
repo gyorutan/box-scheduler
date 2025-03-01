@@ -17,7 +17,7 @@ export const POST = async (request: NextRequest) => {
       time: [],
     };
 
-    checkedDate.forEach((item) => {
+    checkedDate.forEach((item : any) => {
       reservedTimes.time.push(item.time);
     });
 

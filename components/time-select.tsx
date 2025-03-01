@@ -46,6 +46,8 @@ export const TimeSelect = ({
     );
   }
 
+  const yasumi = true;
+
   return (
     <div className="flex flex-col justify-center items-center gap-y-6">
       <div className="mt-2 flex flex-row gap-x-4 border border-blue-500 py-2 px-5">
@@ -75,22 +77,43 @@ export const TimeSelect = ({
 
       {date && date.getDay() !== 0 && date.getDay() !== 6 && (
         <div className="grid grid-cols-2 gap-2 w-full">
-          {availableWeekDayTimes.map((time, index) => (
-            <Button
-              type="button"
-              onClick={() => {
-                if (reservationData.time === time) {
-                  handleTime("");
-                } else {
-                  handleTime(time);
-                }
-              }}
-              key={index}
-              variant={reservationData.time === time ? "default" : "outline"}
-            >
-              {time}
-            </Button>
-          ))}
+          {yasumi
+            ? availableWeekEndTimes.map((time, index) => (
+                <Button
+                  type="button"
+                  onClick={() => {
+                    if (reservationData.time === time) {
+                      handleTime("");
+                    } else {
+                      handleTime(time);
+                    }
+                  }}
+                  key={index}
+                  variant={
+                    reservationData.time === time ? "default" : "outline"
+                  }
+                >
+                  {time}
+                </Button>
+              ))
+            : availableWeekDayTimes.map((time, index) => (
+                <Button
+                  type="button"
+                  onClick={() => {
+                    if (reservationData.time === time) {
+                      handleTime("");
+                    } else {
+                      handleTime(time);
+                    }
+                  }}
+                  key={index}
+                  variant={
+                    reservationData.time === time ? "default" : "outline"
+                  }
+                >
+                  {time}
+                </Button>
+              ))}
         </div>
       )}
 
